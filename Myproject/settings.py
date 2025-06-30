@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 from django.conf.global_settings import STATIC_URL, STATICFILES_DIRS
 
@@ -26,9 +27,10 @@ TEMPLATE_DIR=BASE_DIR/'templates'
 SECRET_KEY = 'django-insecure-2y)&qz911xm#83$-$586^u_o5nujn*5i4dim=_fvpw*nk-8ln8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "True") == "True"
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "*").split(",")
 
 
 # Application definition
